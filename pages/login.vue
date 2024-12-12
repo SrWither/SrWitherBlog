@@ -62,14 +62,6 @@ const handleLogin = async () => {
             />
           </div>
 
-          <!-- Sign up link -->
-          <div class="text-sm text-black mb-4">
-            <p>
-              You don't have an account?
-              <NuxtLink to="/register" class="text-zinc-800">Sign Up</NuxtLink>
-            </p>
-          </div>
-
           <!-- Sign in button -->
           <div class="flex justify-center">
             <BBtn label="Sign in" class="w-full" style="background-color: black; color: white;" />

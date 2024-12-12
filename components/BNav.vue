@@ -51,20 +51,10 @@ const handleLogout = async () => {
         <span>Admin</span>
       </NuxtLink>
 
-      <!-- Login -->
-      <NuxtLink
-        class="flex items-center space-x-2 hover:text-gray-600"
-        to="/login"
-        v-if="!isAuth"
-      >
-        <i class="pi pi-sign-in"></i>
-        <span>Login</span>
-      </NuxtLink>
-
       <!-- Logout -->
       <button
         class="flex items-center space-x-2 hover:text-gray-600"
-        v-else
+        v-if="isAuth"
         @click="handleLogout"
       >
         <i class="pi pi-sign-out"></i>

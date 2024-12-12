@@ -6,7 +6,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   console.log("Connecting to SurrealDB SSR...");
 
-  await sdb.connect("http://10.1.1.20:7435/", {
+  await sdb.connect("https://db.srwither.com.ar", {
     namespace: "blog",
     database: "blog",
   });
