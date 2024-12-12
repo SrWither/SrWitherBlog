@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
-    "@primevue/nuxt-module",
     "@pinia/nuxt",
   ],
   css: ["~/assets/css/main.css"],

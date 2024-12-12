@@ -147,7 +147,7 @@ watch(
 }
 
 #post-content img {
-  max-width: 100%;
+  max-width: 75%;
   height: auto;
   display: block;
   margin: 1em auto;
