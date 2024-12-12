@@ -10,6 +10,7 @@ const props = defineProps<{ content: string }>();
 const emits = defineEmits(["clickImage"]);
 
 const renderedContent = ref<string>("");
+const imageApi = useRuntimeConfig().public.imageUrl;
 
 // Initialize Marked instance with custom settings for syntax highlighting
 const marked = new Marked(
@@ -38,6 +39,14 @@ marked.use({
       `;
       }
       return `<a href="${src.href}" title="${src.title}" target="_blank">${src.text}</a>`;
+    },
+    image(src) {
+      if (src.href.startsWith("srwither_")) {
+        const imageId = src.href.replace("srwither_", "");
+        return `<img src="${imageApi}/api/v1/${imageId}" alt="${src.text}" />`;
+      }
+
+      return `<img src="${src.href}" alt="${src.text}" />`;
     },
   },
 });

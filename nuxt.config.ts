@@ -42,4 +42,11 @@ export default defineNuxtConfig({
     layoutTransition: { name: "layout", mode: "out-in" },
     pageTransition: { name: "page", mode: "out-in" },
   },
+
+  runtimeConfig: {
+    public: {
+      surrealUrl: process.env.CSR_SURREAL_URL || "http://localhost:7435",
+      imageUrl: process.env.IMAGE_API || "http://localhost:3000",
+    }
+  }
 });

@@ -4,7 +4,7 @@ type SimpleResponse = {
   message: string
 }
 
-const imgApi = "https://cdn.srwither.com.ar"
+const imgApi = useRuntimeConfig().public.imageUrl
 
 /**
  * Uploads an image file to the specified image upload API endpoint.

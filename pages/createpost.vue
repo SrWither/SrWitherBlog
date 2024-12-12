@@ -23,7 +23,6 @@ const newpost = reactive<Post>({
 const categories = ref<Category[]>([])
 const optionCategories = ref<Option[]>([])
 const isPreviewOnly = ref(false)
-const imgApi = process.env.IMAGE_API || "http://localhost:3000";
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -50,7 +49,7 @@ const updateCursorPos = () => {
 const handleUploadImage = async (file: File) => {
   if (file) {
     const image = await uploadImage(file)
-    const mdImage = `![image](${imgApi}/api/v1/${image})`
+    const mdImage = `![image](srwither_${image})`
     insertMdImageAtCursor(mdImage)
   }
 }

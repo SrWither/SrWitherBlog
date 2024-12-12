@@ -3,7 +3,7 @@ import { Surreal } from "surrealdb";
 export default defineNuxtPlugin(async (nuxtApp) => {
   const sdb = new Surreal();
 
-  const url = process.env.SERVER_SURREAL_URL || "http://localhost:7435";
+  const url = process.env.SSR_SURREAL_URL || "http://localhost:7435";
 
   await sdb.connect(url, {
     namespace: "blog",
