@@ -1,12 +1,11 @@
 import { Surreal } from "surrealdb";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
-  console.log("Starting SurrealDB SSR WS...");
   const sdb = new Surreal();
 
-  console.log("Connecting to SurrealDB SSR...");
+  const url = process.env.SERVER_SURREAL_URL || "http://localhost:7435";
 
-  await sdb.connect("https://db.srwither.com.ar", {
+  await sdb.connect(url, {
     namespace: "blog",
     database: "blog",
   });

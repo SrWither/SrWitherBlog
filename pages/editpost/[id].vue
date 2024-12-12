@@ -26,7 +26,7 @@ const postIdString = route.params.id as string;
 const postIdSplited = postIdString.split(":");
 const postId = new RecordId(postIdSplited[0], postIdSplited[1]);
 
-const imgApi = "https://cdn.srwither.com.ar";
+const imgApi = process.env.IMAGE_API || "http://localhost:3000";
 
 const isAuthenticated = ref(false);
 const posttags = ref<string>("");

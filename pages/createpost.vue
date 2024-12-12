@@ -23,7 +23,7 @@ const newpost = reactive<Post>({
 const categories = ref<Category[]>([])
 const optionCategories = ref<Option[]>([])
 const isPreviewOnly = ref(false)
-const imgApi = "https://cdn.srwither.com.ar"
+const imgApi = process.env.IMAGE_API || "http://localhost:3000";
 
 const router = useRouter()
 const authStore = useAuthStore()
