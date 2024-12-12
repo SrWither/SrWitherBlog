@@ -9,14 +9,14 @@ interface Option {
 }
 
 useHead({
-    title: "Nameless | Posts",
-    meta: [
-      {
-        name: "description",
-        content: "Explore and discover interesting content",
-      },
-    ],
-  });
+  title: "Nameless | Posts",
+  meta: [
+    {
+      name: "description",
+      content: "Explore and discover interesting content",
+    },
+  ],
+});
 const posts = useState<Post[]>("posts", () => []);
 const filter = ref<string>("");
 const category = ref<RecordId | null>(null);
@@ -69,9 +69,7 @@ const formatDate = (date: Date) => {
 </script>
 
 <template>
-  <div
-    class="h-[calc(100vh-7rem)] transition-all p-6 overflow-scroll"
-  >
+  <div class="h-[calc(100vh-7rem)] transition-all p-6 overflow-scroll">
     <div class="flex flex-col space-y-4">
       <div
         class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 justify-center items-center"

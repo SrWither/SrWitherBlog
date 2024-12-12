@@ -52,6 +52,15 @@ onBeforeMount(async () => {
 
       Object.assign(post.value, postData);
     }
+    useHead({
+      title: `Nameless | ${post.value.title}`,
+      meta: [
+        {
+          name: "description",
+          content: post.value.description,
+        },
+      ],
+    });
   }
 });
 
@@ -86,16 +95,28 @@ const closeLightbox = () => {
   lightboxImageUrl.value = "";
 };
 
-onMounted(() => {
-  useHead({
-    title: `Nameless | ${post.value.title}`,
-    meta: [
-      {
-        name: "description",
-        content: post.value.description,
-      },
-    ],
-  });
+useHead({
+  title: `Nameless | ${post.value.title}`,
+  meta: [
+    {
+      name: "description",
+      content: post.value.description,
+    },
+  ],
+});
+
+onUnmounted(() => {
+  post.value = {
+    id: new RecordId("", ""),
+    title: "",
+    content: "",
+    tags: [],
+    published: false,
+    user: new RecordId("", ""),
+    updated_at: new Date(),
+    category: new RecordId("", ""),
+    description: "",
+  };
 });
 </script>
 
