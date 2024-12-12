@@ -276,8 +276,6 @@ export const deletePost = async (
   token: string,
   id: RecordId
 ): Promise<boolean> => {
-  const { $sdb } = useNuxtApp();
-
   try {
     const isAuthenticated = await authenticate(token);
     if (!isAuthenticated) {
@@ -285,7 +283,7 @@ export const deletePost = async (
       return false;
     }
 
-    await $sdb.delete<Post>(id);
+    await db.delete<Post>(id);
     return true;
   } catch (e) {
     console.error(e);

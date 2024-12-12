@@ -5,6 +5,11 @@ import { type Post, getLastsPosts, getServerLastsPosts } from "~/api/posts";
 const user = ref<User | null>(null);
 const posts = useState<Post[]>("posts", () => []);
 
+definePageMeta({
+  title: "Nameless",
+  description: "Welcome to Nameless's Blog",
+});
+
 if (import.meta.server) {
   await callOnce(async () => {
     posts.value = await getServerLastsPosts();

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { updatePost, getPost, type Post } from "@/api/posts";
+import { updatePost, getPost, type Post, deletePost } from "@/api/posts";
 import { type Category, getCategories } from "@/api/categories";
 import { authenticate } from "@/api/auth";
 import { uploadImage } from "@/api/images";
@@ -14,6 +14,8 @@ interface Option {
 const categories = ref<Category[]>([]);
 const optionCategories = ref<Option[]>([]);
 const isPreviewOnly = ref(false);
+
+const postName = ref<string>("");
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -85,6 +87,15 @@ const handleEditPost = async () => {
     const post = await updatePost(authStore.token, postId || "", updatepost);
     if (post) {
       router.push(`/post/${post.id}`);
+    }
+  }
+};
+
+const handleDeletePost = async () => {
+  if (authStore.token) {
+    const deleted = await deletePost(authStore.token, postId);
+    if (deleted) {
+      router.push("/");
     }
   }
 };
@@ -233,7 +244,25 @@ onBeforeMount(async () => {
           <div class="flex justify-center">
             <BBtn label="Edit post" class="w-full" />
           </div>
+          <!--Delete post, a form where you have to put the title, thats able a button to delete post-->
         </form>
+        <div class="mt-4">
+          <BInputLabel text="Delete" />
+          <BInput
+            type="text"
+            name="delete"
+            v-model="postName"
+            placeholder="Post title"
+          />
+        </div>
+        <div class="flex justify-center mt-4">
+          <BBtn
+            label="Delete post"
+            class="w-full"
+            @click="handleDeletePost"
+            :disabled="postName !== updatepost.title"
+          />
+        </div>
       </div>
       <div class="fixed right-4 top-20 z-50">
         <BBtn

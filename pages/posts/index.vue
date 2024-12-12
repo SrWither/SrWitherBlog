@@ -8,6 +8,11 @@ interface Option {
   label: string;
 }
 
+definePageMeta({
+  title: "Nameless | Posts",
+  description: "Posts page",
+});
+
 const posts = useState<Post[]>("posts", () => []);
 const filter = ref<string>("");
 const category = ref<RecordId | null>(null);
@@ -124,7 +129,7 @@ const formatDate = (date: Date) => {
             </p>
             <div class="flex flex-wrap gap-2">
               <span
-                class="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-700 dark:to-pink-700 text-white rounded-lg text-sm"
+                class="px-3 py-1 bg-white text-black rounded-lg text-sm"
                 v-for="tag in selectedPost?.tags"
                 :key="tag"
               >

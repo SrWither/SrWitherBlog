@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  debug: true,
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
       ssr: false,
     },
     "/posts/**": {
-      ssr: true
+      ssr: true,
     },
     "/createpost": {
       ssr: false,

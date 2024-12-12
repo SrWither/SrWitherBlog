@@ -40,7 +40,7 @@ if (import.meta.server) {
 }
 
 useHead({
-  title: post.value.title,
+  title: `Nameless | ${post.value.title}`,
   meta: [
     {
       name: "description",
