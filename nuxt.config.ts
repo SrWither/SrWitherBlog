@@ -45,6 +45,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      ssrSurrealUrl: process.env.SSR_SURREAL_URL || "http://localhost:7435",
       surrealUrl: process.env.CSR_SURREAL_URL || "http://localhost:7435",
       imageUrl: process.env.IMAGE_API || "http://localhost:3000",
     }
