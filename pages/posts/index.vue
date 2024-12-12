@@ -118,8 +118,8 @@ const formatDate = (date: Date) => {
               <i class="pi pi-times"></i>
             </button>
           </div>
-          <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-4">
-            <h2 class="text-xl font-semibold dark:text-white">
+          <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-4 pr-12">
+            <h2 class="text-xl font-semibold dark:text-white break-words">
               {{ selectedPost?.title }}
             </h2>
             <p class="text-gray-500 mb-2">

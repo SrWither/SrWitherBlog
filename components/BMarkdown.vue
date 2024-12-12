@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { Marked } from 'marked'
-import { markedHighlight } from 'marked-highlight'
-import hljs from 'highlight.js'
-import * as emoji from 'node-emoji'
-import 'highlight.js/styles/atom-one-light.css'
+import { ref, watch } from "vue";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
+import * as emoji from "node-emoji";
+import "highlight.js/styles/atom-one-light.css";
 
-const props = defineProps<{ content: string }>()
-const emits = defineEmits(['clickImage'])
+const props = defineProps<{ content: string }>();
+const emits = defineEmits(["clickImage"]);
 
-const renderedContent = ref<string>('')
+const renderedContent = ref<string>("");
 
 // Initialize Marked instance with custom settings for syntax highlighting
 const marked = new Marked(
   markedHighlight({
-    langPrefix: 'hljs language-',
+    langPrefix: "hljs language-",
     highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : 'txt'
-      return hljs.highlight(code, { language }).value
-    }
+      const language = hljs.getLanguage(lang) ? lang : "txt";
+      return hljs.highlight(code, { language }).value;
+    },
   })
-)
+);
 
 // Custom renderer for handling YouTube video links in markdown
 marked.use({
@@ -28,45 +28,45 @@ marked.use({
     link(src) {
       const youtubeMatch = src.href.match(
         /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/
-      )
+      );
       if (youtubeMatch) {
-        const videoId = youtubeMatch[1]
+        const videoId = youtubeMatch[1];
         return `
         <div class="youtube">
           <iframe class="youtube-iframe" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
         </div>
-      `
+      `;
       }
-      return `<a href="${src.href}" title="${src.title}" target="_blank">${src.text}</a>`
-    }
-  }
-})
+      return `<a href="${src.href}" title="${src.title}" target="_blank">${src.text}</a>`;
+    },
+  },
+});
 
 // Function to render markdown content using Marked and emoji conversion
 const renderMarkdown = (markdown: string) => {
-  return marked.parse(emoji.emojify(markdown))
-}
+  return marked.parse(emoji.emojify(markdown));
+};
 
 // Event handler to handle click events on images within rendered content
 const handleClick = (event: MouseEvent) => {
   if (event.target instanceof HTMLImageElement) {
-    const parentElement = event.target.parentElement
+    const parentElement = event.target.parentElement;
 
     if (!(parentElement instanceof HTMLAnchorElement && parentElement.href)) {
-      event.preventDefault()
-      emits('clickImage', event.target.src)
+      event.preventDefault();
+      emits("clickImage", event.target.src);
     }
   }
-}
+};
 
 // Watch for changes in props.content and update renderedContent accordingly
 watch(
   () => props.content,
   async (newContent) => {
-    renderedContent.value = await renderMarkdown(newContent)
+    renderedContent.value = await renderMarkdown(newContent);
   },
   { immediate: true }
-)
+);
 </script>
 
 <template>
@@ -138,7 +138,7 @@ watch(
 }
 
 #post-content code * {
-  font-family: 'Droid Sans Mono', sans-serif;
+  font-family: "Droid Sans Mono", sans-serif;
 }
 
 .dark #post-content code {

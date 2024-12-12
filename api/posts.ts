@@ -8,6 +8,7 @@ export type Post = {
   description: string;
   content: string;
   published: boolean;
+  image?: string;
   created_at?: Date;
   updated_at?: Date;
   user?: RecordId;

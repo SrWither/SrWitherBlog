@@ -126,7 +126,7 @@ onUnmounted(() => {
     class="bg-gray-100 p-4 sm:p-6 dark:bg-zinc-900 dark:text-white min-h-screen transition-all"
   >
     <div class="py-4 sm:py-6 shadow-lg relative mx-auto bg-zinc-800 rounded-xl">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center break-words px-32">
         {{ post.title }}
       </h1>
 

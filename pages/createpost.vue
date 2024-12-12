@@ -14,6 +14,7 @@ const newpost = reactive<Post>({
   title: '',
   content: '',
   description: '',
+  image: '',
   published: false,
   category: '' as unknown as RecordId,
   tags: []
@@ -131,6 +132,16 @@ onBeforeMount(async () => {
               name="description"
               v-model="newpost.description"
               placeholder="Description"
+            />
+          </div>
+
+          <div class="mb-4">
+            <BInputLabel text="Image" />
+            <BInput
+              type="text"
+              name="image"
+              v-model="newpost.image"
+              placeholder="Image"
             />
           </div>
 

@@ -34,6 +34,7 @@ const updatepost = reactive<Post>({
   title: "",
   content: "",
   description: "",
+  image: "",
   published: false,
   category: "" as unknown as RecordId,
   tags: [],
@@ -86,7 +87,7 @@ const handleEditPost = async () => {
     updatepost.tags = posttags.value.split(" ");
     const post = await updatePost(authStore.token, postId || "", updatepost);
     if (post) {
-      router.push(`/post/${post.id}`);
+      router.push(`/posts/${post.id}`);
     }
   }
 };
@@ -197,6 +198,16 @@ onBeforeMount(async () => {
               name="description"
               v-model="updatepost.description"
               placeholder="Description"
+            />
+          </div>
+
+          <div class="mb-4">
+            <BInputLabel text="Image" />
+            <BInput
+              type="text"
+              name="image"
+              v-model="updatepost.image"
+              placeholder="Image"
             />
           </div>
 

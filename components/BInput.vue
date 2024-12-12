@@ -3,7 +3,7 @@ interface Props {
   name: string
   type: 'email' | 'password' | 'text'
   placeholder: string
-  modelValue: string
+  modelValue: any
 }
 
 defineProps<Props>()
