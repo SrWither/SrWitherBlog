@@ -8,11 +8,15 @@ interface Option {
   label: string;
 }
 
-definePageMeta({
-  title: "Nameless | Posts",
-  description: "Posts page",
-});
-
+useHead({
+    title: "Namelss | Posts",
+    meta: [
+      {
+        name: "description",
+        content: "Explore and discover interesting content",
+      },
+    ],
+  });
 const posts = useState<Post[]>("posts", () => []);
 const filter = ref<string>("");
 const category = ref<RecordId | null>(null);

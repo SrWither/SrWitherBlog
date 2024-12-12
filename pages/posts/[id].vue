@@ -39,16 +39,6 @@ if (import.meta.server) {
   });
 }
 
-useHead({
-  title: `Nameless | ${post.value.title}`,
-  meta: [
-    {
-      name: "description",
-      content: post.value.description,
-    },
-  ],
-});
-
 onBeforeMount(async () => {
   if (import.meta.client) {
     const authStore = useAuthStore();
@@ -95,6 +85,18 @@ const closeLightbox = () => {
   document.body.classList.remove("overflow-hidden");
   lightboxImageUrl.value = "";
 };
+
+onMounted(() => {
+  useHead({
+    title: `Nameless | ${post.value.title}`,
+    meta: [
+      {
+        name: "description",
+        content: post.value.description,
+      },
+    ],
+  });
+});
 </script>
 
 <template>
