@@ -44,14 +44,14 @@ const handleCategory = async () => {
         </h1>
         <div class="bg-zinc-800 rounded-lg shadow-lg p-4 md:p-6">
           <div class="flex flex-wrap gap-2">
-            <RouterLink
+            <NuxtLink
               v-for="category in categories"
               :key="category.id?.toString()"
               :to="`/admin/categories/${category.id || ''}`"
               class="px-3 py-1 bg-white text-black rounded-lg text-sm"
             >
               {{ category.name }}
-            </RouterLink>
+            </NuxtLink>
           </div>
         </div>
       </div>

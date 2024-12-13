@@ -41,9 +41,9 @@ onBeforeMount(async () => {
             <span class="font-semibold">Description:</span>
             {{ category.description }}
           </p>
-          <RouterLink :to="`/admin/editcategory/${category.id || ''}`">
+          <NuxtLink :to="`/admin/editcategory/${category.id || ''}`">
             <BBtn label="Edit" class="w-full " style="color: white; background-color: black;"/>
-          </RouterLink>
+          </NuxtLink>
         </div>
       </BSimpleCard>
     </div>
