@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getPost, getServerPost, type Post } from "@/api/posts";
-import { type User, getMyUser } from "@/api/users";
+import { type User, getUserById, getServerUserById } from "@/api/users";
 import { RecordId } from "surrealdb";
 
 const route = useRoute();
@@ -10,7 +10,7 @@ const postIdString = route.params.id as string;
 const postIdSplited = postIdString.split(":");
 const postId = new RecordId(postIdSplited[0], postIdSplited[1]);
 
-const user = ref<User | null>(null);
+const user = useState<User | null>("user", () => null);
 const post = useState<Post>("post", () => ({
   id: new RecordId("", ""),
   title: "",
@@ -35,19 +35,26 @@ if (import.meta.server) {
       return;
     }
 
+    if (postData.user) {
+      user.value = await getServerUserById(postData.user);
+      console.log("User: ", user.value, postData.user);
+    }
+
     Object.assign(post.value, postData);
   });
 }
 
 onBeforeMount(async () => {
   if (import.meta.client) {
-    const authStore = useAuthStore();
-    user.value = await getMyUser(authStore.token || "");
     if (postId) {
       const postData = await getPost(postId);
       if (!postData) {
         router.push("/404");
         return;
+      }
+
+      if (postData.user) {
+        user.value = await getUserById(postData.user);
       }
 
       Object.assign(post.value, postData);
@@ -126,7 +133,9 @@ onUnmounted(() => {
     class="bg-gray-100 p-4 sm:p-6 dark:bg-zinc-900 dark:text-white min-h-screen transition-all"
   >
     <div class="py-4 sm:py-6 shadow-lg relative mx-auto bg-zinc-800 rounded-xl">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center break-words px-32">
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center break-words px-32"
+      >
         {{ post.title }}
       </h1>
 
@@ -181,9 +190,6 @@ onUnmounted(() => {
             :src="lightboxImageUrl"
             alt="lightbox image"
             class="object-contain lg:object-scale-down max-w-full max-h-full rounded-lg"
-            v-motion
-            :initial="{ opacity: 1, scale: 0 }"
-            :enter="{ opacity: 1, scale: 1 }"
           />
         </div>
       </div>

@@ -16,7 +16,6 @@ export type User = {
  * @returns A promise that resolves to the authenticated user object or null if authentication fails or user information is not available.
  */
 export const getMyUser = async (token: string): Promise<User | null> => {
-
   try {
     const isAuthenticated = await authenticate(token);
     if (!isAuthenticated) {
@@ -28,6 +27,25 @@ export const getMyUser = async (token: string): Promise<User | null> => {
       return null;
     }
 
+    return user;
+  } catch {
+    return null;
+  }
+};
+
+export const getServerUserById = async (id: RecordId): Promise<User | null> => {
+  try {
+    const { $sdb } = useNuxtApp();
+    const user = await $sdb.select<User>(id);
+    return user;
+  } catch {
+    return null;
+  }
+};
+
+export const getUserById = async (id: RecordId): Promise<User | null> => {
+  try {
+    const user = await db.select<User>(id);
     return user;
   } catch {
     return null;
