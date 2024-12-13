@@ -174,7 +174,12 @@ onUnmounted(() => {
           <i class="pi pi-times"></i> Not Published
         </div>
         <div class="text-[1rem]">
-          <BMarkdown :content="post.content" @click-image="handleLightbox" />
+          <ClientOnly>
+            <BMarkdown :content="post.content" @click-image="handleLightbox" />
+            <template #fallback>
+              <h1 class="text-center text-white font-bold text-xl">loading...</h1>
+            </template>
+          </ClientOnly>
         </div>
       </div>
     </div>

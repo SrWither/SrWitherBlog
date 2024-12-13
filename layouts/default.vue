@@ -50,6 +50,10 @@ if (import.meta.client) {
         </ClientOnly>
       </div>
     </header>
+    <NuxtLoadingIndicator 
+      color="#71717a"
+      :height="5"
+    />
     <main class="bg-zinc-950">
       <slot />
     </main>
