@@ -13,6 +13,8 @@ interface Props {
 const props = defineProps<Props>();
 const router = useRouter();
 
+const imageApi = useRuntimeConfig().public.imageUrl;
+
 const category = useState<Category | null>("category", () => null);
 
 if (import.meta.server) {
@@ -41,6 +43,14 @@ const formatDate = (date: Date) => {
 const handlePostClick = () => {
   router.push(`/posts/${props.post.id}`);
 };
+
+const processImageSrc = (src: string): string => {
+  if (src.startsWith("srwither_")) {
+    const imageId = src.replace("srwither_", "");
+    return `${imageApi}/api/v1/${imageId}`;
+  }
+  return src;
+};
 </script>
 
 <template>
@@ -52,7 +62,7 @@ const handlePostClick = () => {
     <div class="relative h-40 bg-gray-200">
       <img
         v-if="props.post.image"
-        :src="props.post.image"
+        :src="processImageSrc(props.post.image)"
         alt="Post image"
         class="w-full h-full object-cover"
       />
