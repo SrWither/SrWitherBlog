@@ -11,6 +11,7 @@ const postIdSplited = postIdString.split(":");
 const postId = new RecordId(postIdSplited[0], postIdSplited[1]);
 
 const user = useState<User | null>("user", () => null);
+const myUser = ref<User | null>(null);
 const post = useState<Post>("post", () => ({
   id: new RecordId("", ""),
   title: "",
@@ -29,7 +30,6 @@ const lightboxImageUrl = ref<string>("");
 if (import.meta.server) {
   await callOnce(async () => {
     const postData = await getServerPost(postId);
-    console.log(postData);
     if (!postData) {
       router.push("/404");
       return;
@@ -37,7 +37,6 @@ if (import.meta.server) {
 
     if (postData.user) {
       user.value = await getServerUserById(postData.user);
-      console.log("User: ", user.value, postData.user);
     }
 
     Object.assign(post.value, postData);
@@ -46,6 +45,7 @@ if (import.meta.server) {
 
 onBeforeMount(async () => {
   if (import.meta.client) {
+    const authUser = useAuthStore();
     if (postId) {
       const postData = await getPost(postId);
       if (!postData) {
@@ -55,6 +55,10 @@ onBeforeMount(async () => {
 
       if (postData.user) {
         user.value = await getUserById(postData.user);
+      }
+
+      if (authUser.token) {
+        myUser.value = authUser.user as User;
       }
 
       Object.assign(post.value, postData);
@@ -84,9 +88,9 @@ const formatDate = (date: Date) => {
 
 const canEditPost = computed(() => {
   return (
-    user.value &&
-    (post.value.user?.toString() === user.value.id.toString() ||
-      user.value.role.toString() === "roles:admin")
+    myUser.value &&
+    (post.value.user?.toString() === myUser.value.id.toString() ||
+      myUser.value.role.toString() === "roles:admin")
   );
 });
 
