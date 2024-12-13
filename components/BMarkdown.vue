@@ -146,8 +146,8 @@ watch(
   background-color: #f1f1f1;
 }
 
-#post-content code * {
-  font-family: "Droid Sans Mono", sans-serif;
+#post-content pre * {
+  font-family: "Droid Sans Mono", monospace !important;
 }
 
 .dark #post-content code {
