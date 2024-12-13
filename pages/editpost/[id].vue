@@ -11,6 +11,10 @@ interface Option {
   label: string;
 }
 
+definePageMeta({
+  middleware: "auth",
+})
+
 const categories = ref<Category[]>([]);
 const optionCategories = ref<Option[]>([]);
 const isPreviewOnly = ref(false);

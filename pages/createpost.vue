@@ -9,6 +9,10 @@ interface Option {
   label: string;
 }
 
+definePageMeta({
+  middleware: "auth",
+})
+
 const posttags = ref<string>('')
 const newpost = reactive<Post>({
   title: '',
