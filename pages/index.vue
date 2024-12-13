@@ -18,11 +18,11 @@ if (import.meta.client) {
 }
 
 useHead({
-  title: "Nameless",
+  title: "SrWither",
   meta: [
     {
       name: "description",
-      content: "Welcome to Nameless's Blog",
+      content: "Welcome to SrWither's Blog",
     },
   ],
 });
@@ -42,7 +42,7 @@ useHead({
           <h1 class="text-4xl font-bold" v-if="user">
             ¡Welcome {{ user.username }}!
           </h1>
-          <h1 class="text-4xl font-bold" v-else>Welcome to Nameless's Blog</h1>
+          <h1 class="text-4xl font-bold" v-else>Welcome to SrWither's Blog</h1>
           <p class="text-lg mt-4">Explore and discover interesting content</p>
         </div>
       </div>

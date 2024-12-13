@@ -40,12 +40,12 @@ if (import.meta.client) {
       <div class="">
         <ClientOnly>
           <BNav
-            title="Nameless"
+            title="SrWither"
             :is-auth="token !== undefined"
             :is-admin="user?.role.toString() === 'roles:admin'"
           />
           <template #fallback>
-            <BNav title="Nameless" :is-auth="false" :is-admin="false" />
+            <BNav title="SrWither" :is-auth="false" :is-admin="false" />
           </template>
         </ClientOnly>
       </div>
@@ -59,7 +59,7 @@ if (import.meta.client) {
       <div
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <p>© 2024 Nameless</p>
+        <p>© 2024 SrWither</p>
         <div class="flex space-x-4">
           <p>All rights reserved</p>
         </div>

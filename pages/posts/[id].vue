@@ -53,7 +53,7 @@ onBeforeMount(async () => {
       Object.assign(post.value, postData);
     }
     useHead({
-      title: `Nameless | ${post.value.title}`,
+      title: `SrWither | ${post.value.title}`,
       meta: [
         {
           name: "description",
@@ -96,7 +96,7 @@ const closeLightbox = () => {
 };
 
 useHead({
-  title: `Nameless | ${post.value.title}`,
+  title: `SrWither | ${post.value.title}`,
   meta: [
     {
       name: "description",

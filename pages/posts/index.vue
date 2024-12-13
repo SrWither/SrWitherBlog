@@ -9,7 +9,7 @@ interface Option {
 }
 
 useHead({
-  title: "Nameless | Posts",
+  title: "SrWither | Posts",
   meta: [
     {
       name: "description",
