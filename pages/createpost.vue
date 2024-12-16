@@ -112,7 +112,7 @@ onBeforeMount(async () => {
       <!-- Form Section -->
       <div
         v-if="!isPreviewOnly"
-        class="p-4 md:p-8 overflow-scroll"
+        class="p-4 md:p-8 overflow-auto"
         v-motion
         :initial="{ opacity: 1, x: -100 }"
         :enter="{ opacity: 1, x: 0 }"
@@ -201,7 +201,7 @@ onBeforeMount(async () => {
         :class="
           isPreviewOnly
             ? 'p-4 md:p-8 bg-white dark:bg-zinc-900 rounded-lg shadow-lg overflow-auto'
-            : 'p-4 md:p-8 overflow-scroll'
+            : 'p-4 md:p-8 overflow-auto'
         "
         v-motion
         :initial="{ opacity: 1, x: 100 }"
